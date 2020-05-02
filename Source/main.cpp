@@ -8,14 +8,14 @@
 
 #include "main.h"
 #include "control.h"
-#ifdef PSL2402
+#if defined(PSL2402) || defined(PSL2802)
   #include "port.h"
 #endif
 
 //----------------------------- Переменные: ----------------------------------
 
 TControl *Control;
-#ifdef PSL2402
+#if defined(PSL2402) || defined(PSL2802)
   TPort *Port;
 #endif
 
@@ -27,7 +27,7 @@ int main(void)
 {
   TSysTimer::Init();        //инициализация системного таймера
   Control = new TControl(); //создание объекта управления
-#ifdef PSL2402
+#if defined(PSL2402) || defined(PSL2802)
   Port = new TPort();       //создание объекта порта
 #endif
   
@@ -35,7 +35,7 @@ int main(void)
   {
     TSysTimer::Sync();      //синхронизация системных тиков с основным циклом
     Control->Execute();     //выполнение местного управления
-#ifdef PSL2402
+#if defined(PSL2402) || defined(PSL2802)
     Port->Execute();        //выполнение команд компьютера
 #endif
   }

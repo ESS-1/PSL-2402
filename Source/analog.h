@@ -14,7 +14,7 @@
 #include "data.h"
 #include "ditherdac.h"
 #include "overadc.h"
-#ifdef PSL2402
+#if defined(PSL2402) || defined(PSL2802)
   #include "fan.h"
 #endif
 
@@ -25,15 +25,23 @@
 #define V_SCALE_MIN    1.0   //наименьшая шкала напряжения, В
 #define I_SCALE_MIN   0.01   //наименьшая шкала тока, А
 #define P_SCALE_MIN    1.0   //наименьшая шкала мощности, Вт
-#define V_SCALE_NOM  24.00   //номинальная шкала напряжения, В
+
 #ifdef PSL2401
+  #define V_SCALE_NOM  24.00   //номинальная шкала напряжения, В
   #define I_SCALE_NOM  0.999 //номинальная шкала тока, А
   #define P_SCALE_NOM   24.0 //номинальная шкала мощности, Вт
 #endif
 #ifdef PSL2402
+  #define V_SCALE_NOM  24.00   //номинальная шкала напряжения, В
   #define I_SCALE_NOM  2.000 //номинальная шкала тока, А
   #define P_SCALE_NOM   48.0 //номинальная шкала мощности, Вт
 #endif
+#ifdef PSL2802
+  #define V_SCALE_NOM  28.00   //номинальная шкала напряжения, В
+  #define I_SCALE_NOM  2.000 //номинальная шкала тока, А
+  #define P_SCALE_NOM   56.0 //номинальная шкала мощности, Вт
+#endif
+
 #define V_SCALE_MAX   99.0   //наибольшая шкала напряжения, В
 #define I_SCALE_MAX   9.99   //наибольшая шкала тока, А
 #define P_SCALE_MAX  990.0   //наибольшая шкала мощности, Вт
@@ -69,7 +77,7 @@
 #ifdef PSL2401
   #define R14          300 //датчик тока R14, мОм
 #endif
-#ifdef PSL2402
+#if defined(PSL2402) || defined(PSL2802)
   #define R14          150 //датчик тока R14, мОм
 #endif
 
@@ -451,7 +459,7 @@ private:
   TGpio<PORTC, PIN13> Pin_OFF;
   TGpio<PORTB, PIN10> Pin_PVG;
   TTherm *Therm;
-#ifdef PSL2402
+#if defined(PSL2402) || defined(PSL2802)
   TFan *Fan;
 #endif
   int16_t Temp;
@@ -492,7 +500,7 @@ public:
   bool IsCC(void);
   bool TempUpdate;
   int16_t GetTemp(void);
-#ifdef PSL2402
+#if defined(PSL2402) || defined(PSL2802)
   char GetSpeed(void);
 #endif
 };

@@ -228,7 +228,7 @@ TData::TData(void)
   SetupData->AddItem(new TParam(PT_PRP,   "OPP",  0, PNOM, PMAX)); //PAR_OPP
   SetupData->AddItem(new TParam(PT_DEL,   "dEL",  0,   0, DMAX));  //PAR_DEL
   SetupData->AddItem(new TParam(PT_T,     "OtP",  TMIN, TNOM, TMAX)); //PAR_OTP
-#ifdef PSL2402
+#if defined(PSL2402) || defined(PSL2802)
   SetupData->AddItem(new TParam(PT_T,     "FnL",  TMIN, TFNL, TMAX)); //PAR_FNL
   SetupData->AddItem(new TParam(PT_T,     "FnH",  TMIN, TFNH, TMAX)); //PAR_FNH
 #endif

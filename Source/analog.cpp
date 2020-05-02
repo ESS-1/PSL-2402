@@ -17,6 +17,7 @@
 #include "analog.h"
 #include "display.h"
 #include "sound.h"
+#include <intrinsics.h>
 
 //----------------------------------------------------------------------------
 //----------------------------- Класс TScaler: -------------------------------
@@ -65,7 +66,7 @@ TAnalog::TAnalog(void)
 {
   Therm = new TTherm();
   TempUpdate = 0;
-#ifdef PSL2402
+#if defined(PSL2402) || defined(PSL2802)
   Fan = new TFan();
 #endif
   Pin_CV.Init(IN_PULL, PULL_DN);
@@ -315,7 +316,7 @@ inline void TAnalog::ThermalControl(void)
   {
     Temp = Therm->Value;
     int16_t Otp = Data->SetupData->Items[PAR_OTP]->Value;
-#ifdef PSL2402
+#if defined(PSL2402) || defined(PSL2802)
     int16_t TfanL = Data->SetupData->Items[PAR_FNL]->Value;
     int16_t TfanH = Data->SetupData->Items[PAR_FNH]->Value;
 #endif
@@ -329,7 +330,7 @@ inline void TAnalog::ThermalControl(void)
       //температура больше порога OTP - DTAL:
       if(Temp > Otp - DTAL)
       {
-#ifdef PSL2402
+#if defined(PSL2402) || defined(PSL2802)
         TfanH = TEMP_FAIL; //полная скорость вентилятора
 #endif
         if(Out) Sound->ABell();
@@ -346,7 +347,7 @@ inline void TAnalog::ThermalControl(void)
         ProtSt &= ~PR_OTP; //сброс флага защиты
       }
     }
-#ifdef PSL2402
+#if defined(PSL2402) || defined(PSL2802)
     Fan->Control(TfanL, TfanH, Temp); //управление вентилятором
 #endif
     TempUpdate = 1;
@@ -366,7 +367,7 @@ int16_t TAnalog::GetTemp(void)
 
 //---------------------- Чтение скорости вентилятора: ------------------------
 
-#ifdef PSL2402
+#if defined(PSL2402) || defined(PSL2802)
 char TAnalog::GetSpeed(void)
 {
   return(Fan->GetSpeed());

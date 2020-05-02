@@ -12,7 +12,13 @@
 
 //----------------------------- Константы: -----------------------------------
 
-#define DEVICE_NAME "PSL-2402" //имя устройства
+#ifdef PSL2402
+  #define DEVICE_NAME "PSL-2402" //имя устройства
+#endif
+#ifdef PSL2802
+  #define DEVICE_NAME "PSL-2802" //имя устройства
+#endif
+
 #define BAUD_RATE       19200  //скорость обмена, бод
 #define FRAME_SIZE         16  //максимальный размер фрейма, байт
 

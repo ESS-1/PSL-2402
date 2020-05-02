@@ -23,7 +23,7 @@
 #define TMAX   990 //макс. задаваемое значение температуры, x0.1°C
 #define TNOM   600 //номинальная температура защиты OTP, x0.1°C
 #define DTAL    30 //разность для порога индикации перегрева, x0.1°C
-#ifdef PSL2402
+#if defined(PSL2402) || defined(PSL2802)
   #define TFNL   450 //ном. температура включения вентилятора, x0.1°C
   #define TFNH   550 //ном. температура полной скорости вентилятора, x0.1°C
 #endif
@@ -62,7 +62,7 @@ enum SetupData_t
   PAR_OPP,  //OPP threshold
   PAR_DEL,  //OVP/OCP delay
   PAR_OTP,  //OTP threshold
-#ifdef PSL2402
+#if defined(PSL2402) || defined(PSL2802)
   PAR_FNL,  //Fan start temperature
   PAR_FNH,  //Fan full speed temperature
 #endif

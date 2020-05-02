@@ -70,6 +70,7 @@ void TSreg::operator = (uint16_t Value)
   SpiWr(BYTE1(Value));
   SpiWr(BYTE2(Value));
   //ожидание окончания передачи:
+  while(!(SPI1->SR & SPI_SR_TXE));
   while(SPI1->SR & SPI_SR_BSY);
   Pin_LOAD = 1;
 }
