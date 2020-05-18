@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\common\bin\cspybat" -f "D:\Projects\3rd_party\PSL-2402\fw_git\PSL-2402\settings\psl-2401.PSL-2402.general.xcl" --backend -f "D:\Projects\3rd_party\PSL-2402\fw_git\PSL-2402\settings\psl-2401.PSL-2402.driver.xcl" 
+"D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\common\bin\cspybat" -f "D:\Projects\3rd_party\PSL-2402\fw_git\PSL-2402\settings\psl-2401.PSL-2401.general.xcl" --backend -f "D:\Projects\3rd_party\PSL-2402\fw_git\PSL-2402\settings\psl-2401.PSL-2401.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\common\bin\cspybat" -f "D:\Projects\3rd_party\PSL-2402\fw_git\PSL-2402\settings\psl-2401.PSL-2402.general.xcl" "--debug_file=%~1" --backend -f "D:\Projects\3rd_party\PSL-2402\fw_git\PSL-2402\settings\psl-2401.PSL-2402.driver.xcl" 
+"D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\common\bin\cspybat" -f "D:\Projects\3rd_party\PSL-2402\fw_git\PSL-2402\settings\psl-2401.PSL-2401.general.xcl" "--debug_file=%~1" --backend -f "D:\Projects\3rd_party\PSL-2402\fw_git\PSL-2402\settings\psl-2401.PSL-2401.driver.xcl" 
 
 @echo off 
 :end
